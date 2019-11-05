@@ -3,14 +3,12 @@ var cols = 20;
 var w;
 var h;
 var mid;
-var framePress;
 var grid = new Array(rows);
 var speed;
 var count;
 var bob = {
   states: []
 };
-
 
 function setup() {
   // setting up env
@@ -38,8 +36,6 @@ function setup() {
 }
 
 function draw() {
-  //setting framePress to true
-  framePress = true;
   rendering();
   physical();
 }
@@ -47,46 +43,41 @@ function draw() {
 
 //visualizzazione tasti pigiati
 function keyTyped() {
-  if (key === 'a' && framePress) {
-    grid[0][mid].nota = true;
-    framePress = false;
+  if (key === 'a') {
+      if(grid[0][mid].nota ==true){
+        grid[0][mid].correctPress = true;
+      }
     sendInfo('a');
-  } else if (key === 's' && framePress) {
-    grid[1][mid].nota = true;
-    framePress = false;
+  } else if (key === 's') {
+      if(grid[0][mid].nota ==true){
+        grid[0][mid].correctPress = true;
+      }
     sendInfo('s');
-  } else if (key === 'd' && framePress) {
-    grid[2][mid].nota = true;
-    framePress = false;
+  } else if (key === 'd') {
+      if(grid[0][mid].nota == true){
+        grid[0][mid].correctPress = true;
+      }
     sendInfo('d');
-  } else if (key === 'f' && framePress) {
-    grid[3][mid].nota = true;
-    framePress = false;
+  } else if (key === 'f') {
+      if(grid[0][mid].nota ==true){
+        grid[0][mid].correctPress = true;
+      }
     sendInfo('f');
   }
+
 }
 
 function physical() {
+
   if (speed > count) {
     count++;
     return;
   }
+
+  spawn();
   count = 0;
   //aggiornamento griglia
-  for (var j = cols - 1; j > 1; j--) {
-    for (var i = 0; i < rows; i++) {
-      if (j == cols - 1) {
-        grid[i][j].nota = false
-      }
-      if (j - 1) {
-        if (grid[i][j - 1].nota) {
-          grid[i][j].nota = true;
-          grid[i][j - 1].nota = false;
-        }
-      }
-    }
-  }
-
+  moveGrid();
 }
 
 function rendering() {
@@ -102,3 +93,41 @@ function rendering() {
 function sendInfo(a) {
 }
 
+
+function spawn(){
+  if (random(1) < 0.08) {
+    for (var i = 0; i < rows; i++) {
+      grid[i][1].nota =true;
+    }
+  }
+}
+
+function checkIfCorrect(){
+  if(grid[0][mid].correctPress==false && grid[0][mid].nota == true){
+    console.log("MISS PRESS");
+    return false;
+  }
+  if(grid[0][mid].correctPress == true && grid[0][mid].nota == true){
+      console.log("BRAVO");
+      return true;
+  }
+}
+
+function moveGrid(){
+  checkIfCorrect();
+  for (var j = cols - 1; j > 1; j--) {
+    for (var i = 0; i < rows; i++) {
+      if (j == cols - 1) {
+        grid[i][j].nota = false
+      }
+      if (j - 1) {
+        if (grid[i][j - 1].nota) {
+          grid[i][j].nota = true;
+          grid[i][j - 1].nota = false;
+          grid[i][j].correctPress = grid[i][j - 1].correctPress;
+          grid[i][j - 1].correctPress = false;
+        }
+      }
+    }
+  }
+}
