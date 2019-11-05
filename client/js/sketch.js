@@ -12,7 +12,7 @@ var bob = {
 
 function setup() {
   // setting up env
-  let canvas = createCanvas(400, 700);
+  let canvas = createCanvas(400, 600);
   canvas.parent('sketch-holder');
   frameRate(100);
 
@@ -29,6 +29,7 @@ function setup() {
   for (var i = 0; i < rows; i++) {
     for (var j = 0; j < cols; j++) {
       grid[i][j] = new Cell(i, j);
+      grid[i][j].initBorder();
     }
   }
   speed = 10;
@@ -81,7 +82,7 @@ function physical() {
 }
 
 function rendering() {
-  background(220);
+  background(0);
   //visualizzazione griglia
   for (var i = 0; i < rows; i++) {
     for (var j = 0; j < cols; j++) {

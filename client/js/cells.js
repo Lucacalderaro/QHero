@@ -4,10 +4,26 @@ function Cell(i, j) {
   this.j = j;
   this.nota = false;
   this.correctPress = false;
-  this.top = true;
-  this.right = true;
-  this.left = true;
-  this.bottom = true;
+  this.top = false;
+  this.right = false;
+  this.left = false;
+  this.bottom = false;
+
+
+  this.initBorder = function(){
+    if(this.i == 0){
+      this.left = true;
+    }
+    if(this.j == 0){
+      this.top = true;
+    }
+    if(this.i == rows-1){
+      this.right = true;
+    }
+    if(this.i == cols-1){
+      this.bottom = true;
+    }
+  }
 
   this.show = function () {
     verde = color(96,241,102);
@@ -17,14 +33,14 @@ function Cell(i, j) {
     backQ = color(16,18,31);
 
     if(this.j == mid){
-      stroke(89);
+      noStroke();
       fill(217, 17, 17);
       rect(this.i * w, this.j * h, w - 1, h - 1);
-      stroke(255, 153, 102);
+      stroke(240);
       fill(128, 0, 0);
       ellipse(this.i * w + w / 2, this.j * h + h / 2, w / 2, h / 2);
     }else if (this.nota) {
-      stroke(89);
+      noStroke();
       fill(217, 217, 217);
       rect(this.i * w, this.j * h, w - 1, h - 1);
       stroke(240);
@@ -41,7 +57,7 @@ function Cell(i, j) {
     }
     else {
       fill(backQ);
-      stroke(255);
+      noStroke();
       rect(this.i * w, this.j * h, w - 1, h - 1);
       stroke(240);
       if(this.i == 0){
