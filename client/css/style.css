@@ -1,6 +1,7 @@
 body {
   background-color: #161622;
   font-family: 'New Rocker', cursive;
+  font-size: 30px;
 }
 
 #container {
@@ -17,4 +18,9 @@ body {
 
 #sketch-holder {
   transform: rotateX(50deg);
+}
+
+.darkMode {
+  background-color: #343a40!important;
+  color: white;
 }
