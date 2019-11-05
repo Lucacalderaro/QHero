@@ -1,4 +1,4 @@
-from flask import Flask, request #import main Flask class and request object
+from flask import Flask, request, send_from_directory, render_template #import main Flask class and request object
 import numpy as np
 import matplotlib.pyplot as plt
 import simulaqron
@@ -33,6 +33,7 @@ def Bob():
         return out
 
 app = Flask(__name__)
+app.debug = True
 
 # REQUEST MEASUREMENT
 @app.route('/insert', methods = ['GET'])
@@ -47,6 +48,23 @@ def worker2():
     m = Bob()
     return '{}'.format(m)
 
+# GAME
+@app.route('/', methods = ['GET'])
+def worker3():
+    return render_template('index.html')
+
+@app.route('/js/<path:path>')
+def send_js(path):
+    return send_from_directory('js', path)
+
+@app.route('/css/<path:path>')
+def send_css(path):
+    return send_from_directory('css', path)
+
+@app.route('/img/<path:path>')
+def send_img(path):
+    return send_from_directory('img', path)
+
+# RUN
 if __name__ == '__main__':
-    # run!
     app.run(port=5000)

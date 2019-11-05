@@ -9,6 +9,9 @@ var count;
 var bob = {
   states: []
 };
+var alice = {
+  states: []
+};
 
 function setup() {
   // setting up env
@@ -45,24 +48,24 @@ function draw() {
 //visualizzazione tasti pigiati
 function keyTyped() {
   if (key === 'a') {
-      if(grid[0][mid].nota ==true){
-        grid[0][mid].correctPress = true;
-      }
+    if (grid[0][mid].nota == true) {
+      grid[0][mid].correctPress = true;
+    }
     sendInfo('a');
   } else if (key === 's') {
-      if(grid[0][mid].nota ==true){
-        grid[0][mid].correctPress = true;
-      }
+    if (grid[0][mid].nota == true) {
+      grid[0][mid].correctPress = true;
+    }
     sendInfo('s');
   } else if (key === 'd') {
-      if(grid[0][mid].nota == true){
-        grid[0][mid].correctPress = true;
-      }
+    if (grid[0][mid].nota == true) {
+      grid[0][mid].correctPress = true;
+    }
     sendInfo('d');
   } else if (key === 'f') {
-      if(grid[0][mid].nota ==true){
-        grid[0][mid].correctPress = true;
-      }
+    if (grid[0][mid].nota == true) {
+      grid[0][mid].correctPress = true;
+    }
     sendInfo('f');
   }
 
@@ -95,26 +98,28 @@ function sendInfo(a) {
 }
 
 
-function spawn(){
+function spawn() {
   if (random(1) < 0.08) {
     for (var i = 0; i < rows; i++) {
-      grid[i][1].nota =true;
+      grid[i][1].nota = true;
     }
   }
 }
 
-function checkIfCorrect(){
-  if(grid[0][mid].correctPress==false && grid[0][mid].nota == true){
+function checkIfCorrect() {
+  if (grid[0][mid].correctPress == false && grid[0][mid].nota == true) {
     console.log("MISS PRESS");
+    alice.states.push('HV');
     return false;
   }
-  if(grid[0][mid].correctPress == true && grid[0][mid].nota == true){
-      console.log("BRAVO");
-      return true;
+  if (grid[0][mid].correctPress == true && grid[0][mid].nota == true) {
+    console.log("BRAVO");
+    alice.states.push('AD');
+    return true;
   }
 }
 
-function moveGrid(){
+function moveGrid() {
   checkIfCorrect();
   for (var j = cols - 1; j > 1; j--) {
     for (var i = 0; i < rows; i++) {

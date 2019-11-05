@@ -24,5 +24,6 @@ Run the server
 ```
 python3 Main.py
 ```
-Enjoy the game.
+Open the browser to this url: http://127.0.0.1:5000 and enjoy the game!
+
 ![Annotazione 2019-11-05 200701](https://user-images.githubusercontent.com/16030020/68237705-f3023280-0007-11ea-8144-0a595dfcc58a.jpg)
