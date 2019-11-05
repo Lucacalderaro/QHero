@@ -6,6 +6,9 @@ var mid;
 var grid = new Array(rows);
 var speed;
 var count;
+var bob = {
+  states: []
+};
 
 function setup() {
   // setting up env
