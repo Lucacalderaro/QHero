@@ -18,7 +18,7 @@ Both must stay in the rhythm of the music and make measurements in order to viol
 ## How to play?
 Install the dipendecies
 ```
-pip3 install flask atplot simulaqron
+pip3 install flask matplot simulaqron
 ```
 Run the server
 ```
