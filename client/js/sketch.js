@@ -11,7 +11,8 @@ var count;
 
 function setup() {
   // setting up env
-  createCanvas(400, 700);
+  let canvas = createCanvas(400, 700);
+  canvas.parent('sketch-holder');
   frameRate(100);
 
   //setting var
