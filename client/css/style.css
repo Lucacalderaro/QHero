@@ -1,1 +1,20 @@
-body {padding: 0; margin: 0;}
+body {
+  background-color: #161622;
+  font-family: 'New Rocker', cursive;
+}
+
+#container {
+  background-image: url("../img/background.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#parent-sketch-holder {
+  perspective: 1000px;
+}
+
+#sketch-holder {
+  transform: rotateX(50deg);
+}
