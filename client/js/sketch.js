@@ -3,8 +3,10 @@ var cols = 20;
 var w;
 var h;
 var mid;
-var framePress; 
+var framePress;
 var grid = new Array(rows);
+var speed;
+var count;
 
 
 function setup() {
@@ -15,7 +17,7 @@ function setup() {
   //setting var
   w = width / rows;
   h = height / cols;
-  mid = floor(cols/3);
+  mid = floor(cols / 3);
 
   // init grid
   for (var i = 0; i < rows; i++) {
@@ -27,9 +29,13 @@ function setup() {
       grid[i][j] = new Cell(i, j);
     }
   }
+  speed = 10;
+  count = 0;
 }
 
 function draw() {
+  //setting framePress to true
+  framePress = true;
   rendering();
   physical();
 }
@@ -37,47 +43,41 @@ function draw() {
 
 //visualizzazione tasti pigiati
 function keyTyped() {
-  if (key   === 'a' && framePress) {
+  if (key === 'a' && framePress) {
     grid[0][mid].nota = true;
     framePress = false;
     sendInfo('a');
-  }else if (key   === 's' && framePress) {
+  } else if (key === 's' && framePress) {
     grid[1][mid].nota = true;
     framePress = false;
     sendInfo('s');
-  }else if (key   === 'd' && framePress) {
+  } else if (key === 'd' && framePress) {
     grid[2][mid].nota = true;
     framePress = false;
     sendInfo('d');
-  }else if (key   === 'f' && framePress) {
+  } else if (key === 'f' && framePress) {
     grid[3][mid].nota = true;
     framePress = false;
     sendInfo('f');
   }
 }
 
-function physical(){
-  background(220);
-  //setting framePress to true
-  framePress = true;
-
-  //visualizzazione griglia
-  for (var i = 0; i < rows; i++) {
-    for (var j = 0; j < cols; j++) {
-      grid[i][j].show();
-    }
+function physical() {
+  if (speed > count) {
+    count++;
+    return;
   }
-
+  count = 0;
   //aggiornamento griglia
-  for (var j = cols-1; j > 1; j--) {
+  for (var j = cols - 1; j > 1; j--) {
     for (var i = 0; i < rows; i++) {
-      if(j==cols-1){
+      if (j == cols - 1) {
         grid[i][j].nota = false
       }
-      if(j-1){
-        if(grid[i][j-1].nota){
+      if (j - 1) {
+        if (grid[i][j - 1].nota) {
           grid[i][j].nota = true;
-          grid[i][j-1].nota = false;
+          grid[i][j - 1].nota = false;
         }
       }
     }
@@ -85,10 +85,16 @@ function physical(){
 
 }
 
-function rendering(){
-  console.log("ciao");
+function rendering() {
+  background(220);
+  //visualizzazione griglia
+  for (var i = 0; i < rows; i++) {
+    for (var j = 0; j < cols; j++) {
+      grid[i][j].show();
+    }
+  }
 }
 
-function sendInfo(a){
-
+function sendInfo(a) {
 }
+
