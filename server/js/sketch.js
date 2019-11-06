@@ -94,7 +94,9 @@ function physical() {
 
   spawn();
   count = 0;
-  //aggiornamento griglia
+  checkIfCorrect();
+  reciveInfo();
+  checkIfCorrectB();
   moveGrid();
 }
 
@@ -114,36 +116,38 @@ function sendInfo(_data) {
 
 function reciveInfo() {
   //prendo bob.states.splices() e aggiorno grid
+  console.log("length: ", bob.states.length);
   if (bob.states.length > 0) {
     var temp = bob.states.splice();
     var lastNote = cols;
     // find last not miss note
     for (var i = cols - 1; i > parameters.alicePosition - 1; i--) {
-      if (grid[0][i].nota && !grid[0][i].nota) {
+      if (grid[0][i].nota && !grid[0][i].miss) {
         lastNote = i;
       }
     }
+    console.log("temp: ");
     console.log(temp);
-    if(temp ==='H'){
+    if (temp === 'H') {
       grid[1][lastNote].pressed = false;
       grid[2][lastNote].pressed = false;
       grid[3][lastNote].pressed = false;
       grid[0][lastNote].pressed = true;
 
     }
-    if(temp ==='V'){
+    if (temp === 'V') {
       grid[1][lastNote].pressed = true;
       grid[2][lastNote].pressed = false;
       grid[3][lastNote].pressed = false;
       grid[0][lastNote].pressed = false;
     }
-    if(temp ==='D'){
+    if (temp === 'D') {
       grid[1][lastNote].pressed = false;
       grid[2][lastNote].pressed = true;
       grid[3][lastNote].pressed = false;
       grid[0][lastNote].pressed = false;
     }
-    if(temp ==='A'){
+    if (temp === 'A') {
       grid[1][lastNote].pressed = false;
       grid[2][lastNote].pressed = false;
       grid[3][lastNote].pressed = true;
@@ -181,9 +185,6 @@ function checkIfCorrectB() {
 
 
 function moveGrid() {
-  checkIfCorrect();
-  reciveInfo();
-  checkIfCorrectB();
   for (var j = cols - 1; j > 1; j--) {
     for (var i = 0; i < rows; i++) {
       if (j == cols - 1) {

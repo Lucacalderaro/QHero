@@ -12,7 +12,7 @@ var alice = {
 };
 var parameters = {
   speed: 5,
-  spawnRate: 0.08,
+  spawnRate: 0.1,
   alicePosition: 4,
   bobPosition: 18,
   threshold: 16,
