@@ -24,13 +24,17 @@ def Alice(data):
 
 def Bob():
     with CQCConnection("Bob") as Bob:
+        good = True
         base = Bob.recvClassical()
         q = Bob.recvEPR()
         if base == 1:
             q.H()
+        elif base == 2:
+            good = False
+
         out = q.measure()
 
-        return out
+        return out if good else null
 
 app = Flask(__name__)
 app.debug = True
