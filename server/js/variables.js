@@ -16,7 +16,8 @@ var parameters = {
   alicePosition: 4,
   bobPosition: 18,
   threshold: 16,
-  start: false
+  start: false,
+  song: new Audio('sng/song.mp3')
 };
 var points = {
   n0: 0,
