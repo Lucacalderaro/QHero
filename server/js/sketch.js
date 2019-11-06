@@ -22,7 +22,7 @@ function setup() {
 }
 
 function draw() {
-  if(parameters.start){
+  if (parameters.start) {
     rendering();
     physical();
   }
@@ -63,24 +63,24 @@ function keyTyped() {
 
 
   if (key === 'h') {
-    if (grid[0][parameters.bobPosition].nota == true && grid[0][parameters.bobPosition].pressed ) {
+    if (grid[0][parameters.bobPosition].nota == true && grid[0][parameters.bobPosition].pressed) {
       points.hitB++;
-      grid[0][parameters.bobPosition].correctPressB=true;
+      grid[0][parameters.bobPosition].correctPressB = true;
     }
   } else if (key === 'j') {
     if (grid[0][parameters.bobPosition].nota == true && grid[1][parameters.bobPosition].pressed) {
       points.hitB++;
-      grid[0][parameters.bobPosition].correctPressB=true;
+      grid[0][parameters.bobPosition].correctPressB = true;
     }
   } else if (key === 'k') {
-    if (grid[0][parameters.bobPosition].nota == true  && grid[2][parameters.bobPosition].pressed) {
+    if (grid[0][parameters.bobPosition].nota == true && grid[2][parameters.bobPosition].pressed) {
       points.hitB++;
-      grid[0][parameters.bobPosition].correctPressB=true;
+      grid[0][parameters.bobPosition].correctPressB = true;
     }
   } else if (key === 'l') {
-    if (grid[0][parameters.bobPosition].nota == true  && grid[3][parameters.bobPosition].pressed) {
+    if (grid[0][parameters.bobPosition].nota == true && grid[3][parameters.bobPosition].pressed) {
       points.hitB++;
-      grid[0][parameters.bobPosition].correctPressB=true;
+      grid[0][parameters.bobPosition].correctPressB = true;
     }
   }
 }
@@ -112,27 +112,28 @@ function sendInfo(_data) {
   alice.states.push(_data)
 }
 
-function reciveInfo(){
+function reciveInfo() {
   //prendo bob.states.splices() e aggiorno grid
-  if(bob.states.lenght > 0){
+  if (bob.states.length > 0) {
     var temp = bob.states.splice();
     var lastNote = cols;
     // find last not miss note
-    for (var i = cols-1; i > parameters.alicePosition-1; i--) {
-      if(grid[0][i].nota && !grid[0][i].nota){
+    for (var i = cols - 1; i > parameters.alicePosition - 1; i--) {
+      if (grid[0][i].nota && !grid[0][i].nota) {
         lastNote = i;
       }
     }
-    if(temp ==='H'){
+    console.log(temp);
+    if (temp === 'H') {
       grid[1][lastNote].pressed = false;
     }
-    if(temp ==='V'){
+    if (temp === 'V') {
       grid[0][lastNote].pressed = false;
     }
-    if(temp ==='D'){
+    if (temp === 'D') {
       grid[3][lastNote].pressed = false;
     }
-    if(temp ==='A'){
+    if (temp === 'A') {
       grid[2][lastNote].pressed = false;
     }
   }
