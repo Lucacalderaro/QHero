@@ -9,16 +9,16 @@ def Alice(data):
         q = Alice.createEPR("Bob")
         good = True
         n = 0
-        if data == 'AD':
+        if data == 'AD' or data == 'DA':
             q.H()
             n = 1
-        elif data != 'HV':
+        elif data != 'HV' and data != 'VH':
             n = 2
             good = False
 
         m = q.measure()
 
-        Alice.sendClassical("Bob", n)
+        Alice.sendClassical("Bob", [n])
 
         return m if good else null
 
@@ -26,20 +26,26 @@ def Bob():
     with CQCConnection("Bob") as Bob:
         good = True
         base = Bob.recvClassical()
-        print(base)
         q = Bob.recvEPR()
+        base = int.from_bytes(base, 'big')
         if base == 1:
             q.H()
         elif base == 2:
             good = False
-
         out = q.measure()
+        print("base: {}".format(base))
+        print("out: {}".format(out))
         if base == 2:
             return "N"
-        if out == 1:
-            return "V" if base == 1 else "D"
-        if out == 0:
-            return "H" if base == 1 else "A" 
+        if out == 1 and base == 0:
+            return "V" 
+        if out == 1 and base != 0:
+            return "D" 
+        if out == 0 and base == 0:
+            return "H" 
+        if out == 0 and base != 0:
+            return "A" 
+        return "S"
 
 app = Flask(__name__)
 # app.debug = True
