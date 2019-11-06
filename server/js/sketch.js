@@ -1,24 +1,3 @@
-var rows = 4;
-var cols = 20;
-var w;
-var h;
-var count;
-var grid = new Array(rows);
-var bob = {
-  states: []
-};
-var alice = {
-  states: []
-};
-
-var parameters = {
-  speed: 5,
-  spawnRate: 0.08,
-  alicePosition: 4,
-  bobPosition: 18,
-  threshold: 16
-};
-
 function setup() {
   // setting up env
   let canvas = createCanvas(400, 600);

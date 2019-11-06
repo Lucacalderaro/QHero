@@ -33,8 +33,12 @@ def Bob():
             good = False
 
         out = q.measure()
-
-        return out if good else null
+        if base == 2:
+            return "N"
+        if out == 1:
+            return "V" if base == 0 else "D"
+        if out == 0:
+            return "H" if base == 0 else "A" 
 
 app = Flask(__name__)
 app.debug = True
