@@ -94,8 +94,8 @@ function physical() {
 
   spawn();
   count = 0;
-  checkIfCorrect();
   reciveInfo();
+  checkIfCorrect();
   checkIfCorrectB();
   moveGrid();
 }
@@ -118,7 +118,7 @@ function reciveInfo() {
   //prendo bob.states.splices() e aggiorno grid
   console.log("length: ", bob.states.length);
   if (bob.states.length > 0) {
-    var temp = bob.states.splice();
+    var temp = bob.states.shift();
     var lastNote = cols;
     // find last not miss note
     for (var i = cols - 1; i > parameters.alicePosition - 1; i--) {
