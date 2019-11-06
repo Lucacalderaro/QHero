@@ -37,9 +37,9 @@ def Bob():
         if base == 2:
             return "N"
         if out == 1:
-            return "V" if base == 0 else "D"
+            return "V" if base == 1 else "D"
         if out == 0:
-            return "H" if base == 0 else "A" 
+            return "H" if base == 1 else "A" 
 
 app = Flask(__name__)
 # app.debug = True
