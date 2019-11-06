@@ -65,22 +65,22 @@ function keyTyped() {
   if (key === 'h') {
     if (grid[0][parameters.bobPosition].nota == true && grid[0][parameters.bobPosition].pressed ) {
       points.hitB++;
-      grid[0][parameters.bobPosition].correctPressB=true,
+      grid[0][parameters.bobPosition].correctPressB=true;
     }
   } else if (key === 'j') {
     if (grid[0][parameters.bobPosition].nota == true && grid[1][parameters.bobPosition].pressed) {
       points.hitB++;
-      grid[0][parameters.bobPosition].correctPressB=true,
+      grid[0][parameters.bobPosition].correctPressB=true;
     }
   } else if (key === 'k') {
     if (grid[0][parameters.bobPosition].nota == true  && grid[2][parameters.bobPosition].pressed) {
       points.hitB++;
-      grid[0][parameters.bobPosition].correctPressB=true,
+      grid[0][parameters.bobPosition].correctPressB=true;
     }
   } else if (key === 'l') {
     if (grid[0][parameters.bobPosition].nota == true  && grid[3][parameters.bobPosition].pressed) {
       points.hitB++;
-      grid[0][parameters.bobPosition].correctPressB=true,
+      grid[0][parameters.bobPosition].correctPressB=true;
     }
   }
 }
