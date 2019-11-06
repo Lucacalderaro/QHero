@@ -61,6 +61,24 @@ function keyTyped() {
     }
   }
 
+
+  if (key === 'h') {
+    if (grid[0][parameters.bobPosition].nota == true && grid[0][parameters.bobPosition].pressed ) {
+      
+    }
+  } else if (key === 'j') {
+    if (grid[0][parameters.bobPosition].nota == true && grid[1][parameters.bobPosition].pressed) {
+ 
+    }
+  } else if (key === 'k') {
+    if (grid[0][parameters.bobPosition].nota == true  && grid[2][parameters.bobPosition].pressed) {
+   
+    }
+  } else if (key === 'l') {
+    if (grid[0][parameters.bobPosition].nota == true  && grid[3][parameters.bobPosition].pressed) {
+   
+    }
+  }
 }
 
 function physical() {
@@ -130,9 +148,10 @@ function checkIfCorrect() {
     for (var i = 0; i < rows; i++) {
       grid[i][parameters.alicePosition].miss = true;
     }
+    
   }
-  //if (grid[0][parameters.alicePosition].correctPress == true && grid[0][parameters.alicePosition].nota == true) {
-  //}
+  if (grid[0][parameters.alicePosition].correctPress == true && grid[0][parameters.alicePosition].nota == true) {
+  }
 }
 
 function moveGrid() {
