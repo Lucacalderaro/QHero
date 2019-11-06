@@ -4,6 +4,7 @@ function Cell(i, j) {
   this.j = j;
   this.nota = false;
   this.correctPress = false;
+  this.correctPressB =false;
   this.selectedBase = "";
   this.pressed = false;
   this.miss = false;

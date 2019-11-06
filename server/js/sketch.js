@@ -61,6 +61,28 @@ function keyTyped() {
     }
   }
 
+
+  if (key === 'h') {
+    if (grid[0][parameters.bobPosition].nota == true && grid[0][parameters.bobPosition].pressed ) {
+      points.hitB++;
+      grid[0][parameters.bobPosition].correctPressB=true;
+    }
+  } else if (key === 'j') {
+    if (grid[0][parameters.bobPosition].nota == true && grid[1][parameters.bobPosition].pressed) {
+      points.hitB++;
+      grid[0][parameters.bobPosition].correctPressB=true;
+    }
+  } else if (key === 'k') {
+    if (grid[0][parameters.bobPosition].nota == true  && grid[2][parameters.bobPosition].pressed) {
+      points.hitB++;
+      grid[0][parameters.bobPosition].correctPressB=true;
+    }
+  } else if (key === 'l') {
+    if (grid[0][parameters.bobPosition].nota == true  && grid[3][parameters.bobPosition].pressed) {
+      points.hitB++;
+      grid[0][parameters.bobPosition].correctPressB=true;
+    }
+  }
 }
 
 function physical() {
@@ -130,14 +152,24 @@ function checkIfCorrect() {
     for (var i = 0; i < rows; i++) {
       grid[i][parameters.alicePosition].miss = true;
     }
+    points.missA++;
   }
-  //if (grid[0][parameters.alicePosition].correctPress == true && grid[0][parameters.alicePosition].nota == true) {
-  //}
+  if (grid[0][parameters.alicePosition].correctPress == true && grid[0][parameters.alicePosition].nota == true) {
+    points.hitA++;
+  }
 }
+
+function checkIfCorrectB() {
+  if (grid[0][parameters.bobPosition].correctPressB == false && grid[0][parameters.bobPosition].nota == true) {
+    points.missB++;
+  }
+}
+
 
 function moveGrid() {
   checkIfCorrect();
   reciveInfo();
+  checkIfCorrectB();
   for (var j = cols - 1; j > 1; j--) {
     for (var i = 0; i < rows; i++) {
       if (j == cols - 1) {
