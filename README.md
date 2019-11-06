@@ -41,8 +41,9 @@ Open the browser to this url: http://127.0.0.1:5000 and enjoy the game!
 ![Annotazione 2019-11-05 200701](https://user-images.githubusercontent.com/16030020/68314717-ec7ec400-00b6-11ea-901b-ce812b0f90da.gif)
 
 ## Team
-[Andrea Chinello](https://github.com/SydanJainen)
-Luca Calderaro
-[Federico Berra](https://github.com/XaBerr)
-Francesco Picciariello
-Riccardo Costantini
+
+- [Andrea Chinello](https://github.com/SydanJainen)
+- Luca Calderaro
+- [Federico Berra](https://github.com/XaBerr)
+- Francesco Picciariello
+- Riccardo Costantini
