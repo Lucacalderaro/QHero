@@ -20,10 +20,22 @@ Install the dipendecies
 ```
 pip3 install flask matplotlib simulaqron
 ```
-Run the server
+
+Run the server simulaqron
+```
+simulaqron start
+```
+
+Run the server http
 ```
 python3 Main.py
 ```
+
+For close the server run
+```
+simulaqron stop
+```
+
 Open the browser to this url: http://127.0.0.1:5000 and enjoy the game!
 
 ![Annotazione 2019-11-05 200701](https://user-images.githubusercontent.com/16030020/68237705-f3023280-0007-11ea-8144-0a595dfcc58a.jpg)
