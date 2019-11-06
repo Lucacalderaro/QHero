@@ -40,6 +40,7 @@ $(document).ready(function () {
       hide(4);
       var audio = new Audio('sng/song.mp3');
       audio.play();
+      parameters.start = true;
     }, 5 * 500);
   });
 });

@@ -15,7 +15,8 @@ var parameters = {
   spawnRate: 0.08,
   alicePosition: 4,
   bobPosition: 18,
-  threshold: 16
+  threshold: 16,
+  start: false
 };
 var points = {
   n0: 0,
