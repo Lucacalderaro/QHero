@@ -15,7 +15,8 @@ var parameters = {
   speed: 5,
   spawnRate: 0.08,
   alicePosition: 4,
-  bobPosition: 18
+  bobPosition: 18,
+  threshold: 16
 };
 
 function setup() {
@@ -36,7 +37,6 @@ function setup() {
   for (var i = 0; i < rows; i++) {
     for (var j = 0; j < cols; j++) {
       grid[i][j] = new Cell(i, j);
-      grid[i][j].initBorder();
     }
   }
   count = 0;
@@ -54,25 +54,29 @@ function keyTyped() {
     if (grid[0][parameters.alicePosition].nota == true) {
       grid[0][parameters.alicePosition].correctPress = true;
       sendInfo('HV');
-      grid[0][parameters.alicePosition].pressed = "HV";
+      grid[0][parameters.alicePosition].pressed = true;
+      grid[1][parameters.alicePosition].pressed = true;
     }
   } else if (key === 's') {
     if (grid[0][parameters.alicePosition].nota == true) {
       grid[0][parameters.alicePosition].correctPress = true;
       sendInfo('HV');
-      grid[0][parameters.alicePosition].pressed = "HV";
+      grid[0][parameters.alicePosition].pressed = true;
+      grid[1][parameters.alicePosition].pressed = true;
     }
   } else if (key === 'd') {
     if (grid[0][parameters.alicePosition].nota == true) {
       grid[0][parameters.alicePosition].correctPress = true;
       sendInfo('DA');
-      grid[0][parameters.alicePosition].pressed = "DA";
+      grid[2][parameters.alicePosition].pressed = true;
+      grid[3][parameters.alicePosition].pressed = true;
     }
   } else if (key === 'f') {
     if (grid[0][parameters.alicePosition].nota == true) {
       grid[0][parameters.alicePosition].correctPress = true;
       sendInfo('DA');
-      grid[0][parameters.alicePosition].pressed = "DA";
+      grid[2][parameters.alicePosition].pressed = true;
+      grid[3][parameters.alicePosition].pressed = true;
     }
   }
 
