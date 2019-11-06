@@ -38,14 +38,14 @@ $(document).ready(function () {
     }, 4 * 500);
     setTimeout(function () {
       hide(4);
-      parameters.audio.play();
+      var audio = new Audio('sng/song.mp3')
+      audio.play();
       parameters.start = true;
     }, 5 * 500);
     setTimeout(function () {
       unhide(5);
-      parameters.audio.stop();
       parameters.start = false;
-    }, 5 * 500 + (80000))
+    }, 5 * 500 + 80000)
   });
 });
 

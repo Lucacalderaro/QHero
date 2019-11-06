@@ -26,6 +26,7 @@ def Bob():
     with CQCConnection("Bob") as Bob:
         good = True
         base = Bob.recvClassical()
+        print(base)
         q = Bob.recvEPR()
         if base == 1:
             q.H()
@@ -41,7 +42,7 @@ def Bob():
             return "H" if base == 0 else "A" 
 
 app = Flask(__name__)
-app.debug = True
+# app.debug = True
 
 # REQUEST MEASUREMENT
 @app.route('/insert', methods = ['GET'])
@@ -54,7 +55,7 @@ def worker1():
 @app.route('/request', methods = ['GET'])
 def worker2():
     m = Bob()
-    return '{}'.format(m)
+    return m
 
 # GAME
 @app.route('/', methods = ['GET'])

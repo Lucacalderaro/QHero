@@ -17,7 +17,7 @@ var parameters = {
   bobPosition: 18,
   threshold: 16,
   start: false,
-  song: new Audio('sng/song.mp3')
+  // song: new Audio('sng/song.mp3')
 };
 var points = {
   n0: 0,
@@ -31,5 +31,7 @@ var points = {
   beta: 0.5,
   scale: 100,
   missA: 0,
-  missB: 0
+  missB: 0,
+  hitA: 0,
+  hitB: 0
 }
