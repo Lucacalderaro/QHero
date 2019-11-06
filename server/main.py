@@ -73,6 +73,10 @@ def send_css(path):
 def send_img(path):
     return send_from_directory('img', path)
 
+@app.route('/sng/<path:path>')
+def send_sng(path):
+    return send_from_directory('sng', path)
+
 # RUN
 if __name__ == '__main__':
     app.run(port=5000)

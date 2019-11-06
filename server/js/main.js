@@ -12,6 +12,35 @@ $(document).ready(function () {
   $(".start-btn").click(function () {
     alice.states = [];
     bob.states = [];
+    hide(0);
+    hide(1);
+    hide(2);
+    hide(3);
+    hide(4);
+    setTimeout(function () {
+      unhide(0);
+    }, 0 * 500);
+    setTimeout(function () {
+      hide(0);
+      unhide(1);
+    }, 1 * 500);
+    setTimeout(function () {
+      hide(1);
+      unhide(2);
+    }, 2 * 500);
+    setTimeout(function () {
+      hide(2);
+      unhide(3);
+    }, 3 * 500);
+    setTimeout(function () {
+      hide(3);
+      unhide(4);
+    }, 4 * 500);
+    setTimeout(function () {
+      hide(4);
+      var audio = new Audio('sng/song.mp3');
+      audio.play();
+    }, 5 * 500);
   });
 });
 
@@ -62,7 +91,6 @@ function pointA(_vector) {
     )));
 }
 
-
 function pointTotal() {
   return pointA();
 }
@@ -73,4 +101,13 @@ function entropyB(_p) {
 
 function entropyBB(_p00, _p01, _p10, _p11) {
   return - _p00 * Math.log2(_p00) - _p01 * Math.log2(_p01) - _p10 * Math.log2(_p10) - _p11 * Math.log2(_p11);
+}
+
+function hide(_x) {
+  $(".msg-" + _x).removeClass("invisible");
+  $(".msg-" + _x).addClass("invisible");
+}
+
+function unhide(_x) {
+  $(".msg-" + _x).removeClass("invisible");
 }
