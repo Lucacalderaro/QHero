@@ -45,9 +45,9 @@ function Cell(i, j) {
   this.setColore = function () {
     if (this.i == 0) {
       return this.verde;
-    } else if (this.i == 1) {
+  } else if (this.i == 1) {
       return this.rosso;
-    } else if (this.i == 2) {
+  } else if (this.i == 2) {
       return this.giallo;
     } else {
       return this.blu;
@@ -72,7 +72,7 @@ function Cell(i, j) {
 
   this.betweenAliceAndBob = function () {
     if (this.nota) {
-      this.drawNote();
+      this.drawNoteAfterAlice();
     }
     else {
       this.drawGrid();
@@ -81,7 +81,7 @@ function Cell(i, j) {
 
   this.nearBob = function () {
     if (this.nota) {
-      this.drawNote();
+      this.drawNoteAfterAlice();
     }
     else {
       this.drawGrid();
