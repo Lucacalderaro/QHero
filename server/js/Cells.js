@@ -4,7 +4,7 @@ function Cell(i, j) {
   this.j = j;
   this.nota = false;
   this.correctPress = false;
-  this.correctPressB =false;
+  this.correctPressB = false;
   this.selectedBase = "";
   this.pressed = false;
   this.miss = false;
@@ -47,9 +47,9 @@ function Cell(i, j) {
   this.setColore = function () {
     if (this.i == 0) {
       return this.verde;
-  } else if (this.i == 1) {
+    } else if (this.i == 1) {
       return this.rosso;
-  } else if (this.i == 2) {
+    } else if (this.i == 2) {
       return this.giallo;
     } else {
       return this.blu;
@@ -91,9 +91,22 @@ function Cell(i, j) {
   }
 
   this.drawNoteAfterAlice = function () {
-    if(this.miss){
-        this.drawNoteAlice();
-    }else if(this.pressed === true) {
+    if (this.miss) {
+      this.drawNoteAlice();
+    } else if (this.pressed === true) {
+      noStroke();
+      fill(217, 217, 217);
+      rect(this.i * w, this.j * h, w - 1, h - 1);
+      this.drawElipse();
+    } else {
+      this.drawGrid();
+    }
+  }
+
+  this.drawNoteNearBob = function () {
+    if (this.miss) {
+      this.drawNoteAlice();
+    } else if (this.selectedBase === true) {
       noStroke();
       fill(217, 217, 217);
       rect(this.i * w, this.j * h, w - 1, h - 1);
@@ -110,7 +123,7 @@ function Cell(i, j) {
     this.drawElipse();
   }
 
-  
+
   this.drawElipse = function () {
     noStroke();
     fill(this.setColore());

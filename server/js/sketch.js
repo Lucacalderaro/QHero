@@ -37,6 +37,8 @@ function keyTyped() {
       grid[0][parameters.alicePosition].pressed = true;
       grid[1][parameters.alicePosition].pressed = true;
       sendInfo('HV');
+    } else {
+      points.missA++;
     }
   } else if (key === 's') {
     if (grid[0][parameters.alicePosition].nota == true) {
@@ -44,6 +46,8 @@ function keyTyped() {
       grid[0][parameters.alicePosition].pressed = true;
       grid[1][parameters.alicePosition].pressed = true;
       sendInfo('HV');
+    } else {
+      points.missA++;
     }
   } else if (key === 'd') {
     if (grid[0][parameters.alicePosition].nota == true) {
@@ -51,6 +55,8 @@ function keyTyped() {
       grid[2][parameters.alicePosition].pressed = true;
       grid[3][parameters.alicePosition].pressed = true;
       sendInfo('DA');
+    } else {
+      points.missA++;
     }
   } else if (key === 'f') {
     if (grid[0][parameters.alicePosition].nota == true) {
@@ -58,6 +64,8 @@ function keyTyped() {
       grid[2][parameters.alicePosition].pressed = true;
       grid[3][parameters.alicePosition].pressed = true;
       sendInfo('DA');
+    } else {
+      points.missA++;
     }
   }
 
@@ -66,21 +74,29 @@ function keyTyped() {
     if (grid[0][parameters.bobPosition].nota == true && grid[0][parameters.bobPosition].pressed) {
       points.hitB++;
       grid[0][parameters.bobPosition].correctPressB = true;
+    } else {
+      points.missB++;
     }
   } else if (key === 'j') {
     if (grid[0][parameters.bobPosition].nota == true && grid[1][parameters.bobPosition].pressed) {
       points.hitB++;
       grid[0][parameters.bobPosition].correctPressB = true;
+    } else {
+      points.missB++;
     }
   } else if (key === 'k') {
     if (grid[0][parameters.bobPosition].nota == true && grid[2][parameters.bobPosition].pressed) {
       points.hitB++;
       grid[0][parameters.bobPosition].correctPressB = true;
+    } else {
+      points.missB++;
     }
   } else if (key === 'l') {
     if (grid[0][parameters.bobPosition].nota == true && grid[3][parameters.bobPosition].pressed) {
       points.hitB++;
       grid[0][parameters.bobPosition].correctPressB = true;
+    } else {
+      points.missB++;
     }
   }
 }
@@ -98,6 +114,7 @@ function physical() {
   checkIfCorrect();
   checkIfCorrectB();
   moveGrid();
+  setScore();
 }
 
 function rendering() {
@@ -133,6 +150,7 @@ function reciveInfo() {
       grid[2][lastNote].pressed = false;
       grid[3][lastNote].pressed = false;
       grid[0][lastNote].pressed = true;
+      grid[0][lastNote].selectedBase = true;
 
     }
     if (temp === 'V') {
@@ -140,19 +158,23 @@ function reciveInfo() {
       grid[2][lastNote].pressed = false;
       grid[3][lastNote].pressed = false;
       grid[0][lastNote].pressed = false;
+      grid[1][lastNote].selectedBase = true;
     }
     if (temp === 'D') {
       grid[1][lastNote].pressed = false;
       grid[2][lastNote].pressed = true;
       grid[3][lastNote].pressed = false;
       grid[0][lastNote].pressed = false;
+      grid[2][lastNote].selectedBase = true;
     }
     if (temp === 'A') {
       grid[1][lastNote].pressed = false;
       grid[2][lastNote].pressed = false;
       grid[3][lastNote].pressed = true;
       grid[0][lastNote].pressed = false;
+      grid[3][lastNote].selectedBase = true;
     }
+
   }
 }
 
