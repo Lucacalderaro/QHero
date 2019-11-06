@@ -124,17 +124,30 @@ function reciveInfo() {
       }
     }
     console.log(temp);
-    if (temp === 'H') {
+    if(temp ==='H'){
       grid[1][lastNote].pressed = false;
+      grid[2][lastNote].pressed = false;
+      grid[3][lastNote].pressed = false;
+      grid[0][lastNote].pressed = true;
+
     }
-    if (temp === 'V') {
+    if(temp ==='V'){
+      grid[1][lastNote].pressed = true;
+      grid[2][lastNote].pressed = false;
+      grid[3][lastNote].pressed = false;
       grid[0][lastNote].pressed = false;
     }
-    if (temp === 'D') {
+    if(temp ==='D'){
+      grid[1][lastNote].pressed = false;
+      grid[2][lastNote].pressed = true;
       grid[3][lastNote].pressed = false;
+      grid[0][lastNote].pressed = false;
     }
-    if (temp === 'A') {
+    if(temp ==='A'){
+      grid[1][lastNote].pressed = false;
       grid[2][lastNote].pressed = false;
+      grid[3][lastNote].pressed = true;
+      grid[0][lastNote].pressed = false;
     }
   }
 }
