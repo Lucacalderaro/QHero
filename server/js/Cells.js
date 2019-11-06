@@ -6,6 +6,7 @@ function Cell(i, j) {
   this.correctPress = false;
   this.selectedBase = "";
   this.pressed = false;
+  this.miss = false;
   //colori
   this.verde = color(96, 241, 102);
   this.rosso = color(186, 35, 42);
@@ -89,9 +90,9 @@ function Cell(i, j) {
   }
 
   this.drawNoteAfterAlice = function () {
-    console.log("afterAlice");
-    if(this.pressed === true) {
-      console.log(this.pressed);
+    if(this.miss){
+        this.drawNoteAlice();
+    }else if(this.pressed === true) {
       noStroke();
       fill(217, 217, 217);
       rect(this.i * w, this.j * h, w - 1, h - 1);
