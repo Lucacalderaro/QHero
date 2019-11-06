@@ -3,15 +3,15 @@ $(document).ready(function () {
   $('#myModal').modal({
     show: true
   })
-  setTimeout(function () {
-    $("#sketch-holder").find("canvas").css("width", "100%");
-    $("#sketch-holder").css("margin-top", "200px");
-  }, 100);
   spamAlice();
   getBobData();
   $(".start-btn").click(function () {
     alice.states = [];
     bob.states = [];
+    setTimeout(function () {
+      $("#sketch-holder").find("canvas").css("width", "100%");
+      $("#sketch-holder").css("margin-top", "200px");
+    }, 100);
     hide(0);
     hide(1);
     hide(2);
