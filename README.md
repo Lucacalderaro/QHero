@@ -28,7 +28,7 @@ simulaqron start
 
 Run the server http
 ```
-python3 Main.py
+python3 server/main.py
 ```
 
 For close the server run
