@@ -33,7 +33,7 @@ function Cell(i, j) {
     if (this.j < parameters.alicePosition) {
       this.beforeAlice();
     }
-    if (this.j > parameters.alicePosition && this.j < parameters.threshold) {
+    if (this.j > parameters.alicePosition && this.j <= parameters.threshold) {
       this.betweenAliceAndBob();
     }
     if (this.j > parameters.threshold && this.j != parameters.bobPosition) {
@@ -52,13 +52,6 @@ function Cell(i, j) {
     } else {
       return this.blu;
     }
-  }
-
-
-  this.drawElipse = function () {
-    noStroke();
-    fill(this.setColore());
-    ellipse(this.i * w + w / 2, this.j * h + h / 2, w / 2, h / 2);
   }
 
   this.beforeAlice = function () {
@@ -96,7 +89,9 @@ function Cell(i, j) {
   }
 
   this.drawNoteAfterAlice = function () {
-    if (this.pressed) {
+    console.log("afterAlice");
+    if(this.pressed === true) {
+      console.log(this.pressed);
       noStroke();
       fill(217, 217, 217);
       rect(this.i * w, this.j * h, w - 1, h - 1);
@@ -111,5 +106,12 @@ function Cell(i, j) {
     noStroke();
     rect(this.i * w, this.j * h, w - 1, h - 1);
     this.drawElipse();
+  }
+
+  
+  this.drawElipse = function () {
+    noStroke();
+    fill(this.setColore());
+    ellipse(this.i * w + w / 2, this.j * h + h / 2, w / 2, h / 2);
   }
 }
