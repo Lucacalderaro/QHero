@@ -38,4 +38,11 @@ simulaqron stop
 
 Open the browser to this url: http://127.0.0.1:5000 and enjoy the game!
 
-![Annotazione 2019-11-05 200701](https://user-images.githubusercontent.com/16030020/68237705-f3023280-0007-11ea-8144-0a595dfcc58a.jpg)
+![Annotazione 2019-11-05 200701](https://user-images.githubusercontent.com/16030020/68314717-ec7ec400-00b6-11ea-901b-ce812b0f90da.gif)
+
+## Team
+[Andrea Chinello](https://github.com/SydanJainen)
+Luca Calderaro
+[Federico Berra](https://github.com/XaBerr)
+Francesco Picciariello
+Riccardo Costantini
