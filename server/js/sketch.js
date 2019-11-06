@@ -2,15 +2,20 @@ var rows = 4;
 var cols = 20;
 var w;
 var h;
-var mid;
-var grid = new Array(rows);
-var speed;
 var count;
+var grid = new Array(rows);
 var bob = {
   states: []
 };
 var alice = {
   states: []
+};
+
+var parameters = {
+  speed: 5,
+  spawnRate: 0.08,
+  alicePosition: 4,
+  bobPosition: 18
 };
 
 function setup() {
@@ -22,7 +27,6 @@ function setup() {
   //setting var
   w = width / rows;
   h = height / cols;
-  mid = floor(cols / 3);
 
   // init grid
   for (var i = 0; i < rows; i++) {
@@ -35,7 +39,6 @@ function setup() {
       grid[i][j].initBorder();
     }
   }
-  speed = 10;
   count = 0;
 }
 
@@ -48,32 +51,36 @@ function draw() {
 //visualizzazione tasti pigiati
 function keyTyped() {
   if (key === 'a') {
-    if (grid[0][mid].nota == true) {
-      grid[0][mid].correctPress = true;
+    if (grid[0][parameters.alicePosition].nota == true) {
+      grid[0][parameters.alicePosition].correctPress = true;
+      sendInfo('HV');
+      grid[0][parameters.alicePosition].pressed = "HV";
     }
-    sendInfo('a');
   } else if (key === 's') {
-    if (grid[0][mid].nota == true) {
-      grid[0][mid].correctPress = true;
+    if (grid[0][parameters.alicePosition].nota == true) {
+      grid[0][parameters.alicePosition].correctPress = true;
+      sendInfo('HV');
+      grid[0][parameters.alicePosition].pressed = "HV";
     }
-    sendInfo('s');
   } else if (key === 'd') {
-    if (grid[0][mid].nota == true) {
-      grid[0][mid].correctPress = true;
+    if (grid[0][parameters.alicePosition].nota == true) {
+      grid[0][parameters.alicePosition].correctPress = true;
+      sendInfo('DA');
+      grid[0][parameters.alicePosition].pressed = "DA";
     }
-    sendInfo('d');
   } else if (key === 'f') {
-    if (grid[0][mid].nota == true) {
-      grid[0][mid].correctPress = true;
+    if (grid[0][parameters.alicePosition].nota == true) {
+      grid[0][parameters.alicePosition].correctPress = true;
+      sendInfo('DA');
+      grid[0][parameters.alicePosition].pressed = "DA";
     }
-    sendInfo('f');
   }
 
 }
 
 function physical() {
 
-  if (speed > count) {
+  if (100 / parameters.speed > count) {
     count++;
     return;
   }
@@ -94,12 +101,13 @@ function rendering() {
   }
 }
 
-function sendInfo(a) {
+function sendInfo(_data) {
+  alice.states.push(_data)
 }
 
 
 function spawn() {
-  if (random(1) < 0.08) {
+  if (random(1) < parameters.spawnRate) {
     for (var i = 0; i < rows; i++) {
       grid[i][1].nota = true;
     }
@@ -107,14 +115,14 @@ function spawn() {
 }
 
 function checkIfCorrect() {
-  if (grid[0][mid].correctPress == false && grid[0][mid].nota == true) {
+  if (grid[0][parameters.alicePosition].correctPress == false && grid[0][parameters.alicePosition].nota == true) {
     console.log("MISS PRESS");
-    alice.states.push('HV');
+    // alice.states.push('HV');
     return false;
   }
-  if (grid[0][mid].correctPress == true && grid[0][mid].nota == true) {
+  if (grid[0][parameters.alicePosition].correctPress == true && grid[0][parameters.alicePosition].nota == true) {
     console.log("BRAVO");
-    alice.states.push('AD');
+    // alice.states.push('AD');
     return true;
   }
 }

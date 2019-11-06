@@ -9,6 +9,10 @@ $(document).ready(function () {
   }, 100);
   spamAlice();
   getBobData();
+  $(".start-btn").click(function () {
+    alice.states = [];
+    bob.states = [];
+  });
 });
 
 function getBobData() {
@@ -24,10 +28,16 @@ function getBobData() {
 
 function spamAlice() {
   console.log("Start - spamAlice");
-  $.get("/insert?base=HV", function (data) {
-    console.log("End - spamAlice");
+  if (alice.states.length !== 0) {
+    $.get("/insert?base=" + alice.states.shift(), function (data) {
+      console.log("End - spamAlice");
+      setTimeout(function () {
+        spamAlice()
+      }, 500);
+    });
+  } else {
     setTimeout(function () {
       spamAlice()
     }, 500);
-  });
+  }
 }
