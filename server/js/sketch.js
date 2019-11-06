@@ -32,30 +32,30 @@ function keyTyped() {
   if (key === 'a') {
     if (grid[0][parameters.alicePosition].nota == true) {
       grid[0][parameters.alicePosition].correctPress = true;
-      sendInfo('HV');
       grid[0][parameters.alicePosition].pressed = true;
       grid[1][parameters.alicePosition].pressed = true;
+      sendInfo('HV');
     }
   } else if (key === 's') {
     if (grid[0][parameters.alicePosition].nota == true) {
       grid[0][parameters.alicePosition].correctPress = true;
-      sendInfo('HV');
       grid[0][parameters.alicePosition].pressed = true;
       grid[1][parameters.alicePosition].pressed = true;
+      sendInfo('HV');
     }
   } else if (key === 'd') {
     if (grid[0][parameters.alicePosition].nota == true) {
       grid[0][parameters.alicePosition].correctPress = true;
-      sendInfo('DA');
       grid[2][parameters.alicePosition].pressed = true;
       grid[3][parameters.alicePosition].pressed = true;
+      sendInfo('DA');
     }
   } else if (key === 'f') {
     if (grid[0][parameters.alicePosition].nota == true) {
       grid[0][parameters.alicePosition].correctPress = true;
-      sendInfo('DA');
       grid[2][parameters.alicePosition].pressed = true;
       grid[3][parameters.alicePosition].pressed = true;
+      sendInfo('DA');
     }
   }
 
@@ -88,6 +88,32 @@ function sendInfo(_data) {
   alice.states.push(_data)
 }
 
+function reciveInfo(){
+  //prendo bob.states.splices() e aggiorno grid
+  if(bob.states.lenght > 0){
+    var temp = bob.states.splice();
+    var lastNote = cols;
+    // find last not miss note
+    for (var i = cols-1; i > parameters.alicePosition-1; i--) {
+      if(grid[0][i].nota && !grid[0][i].nota){
+        lastNote = i;
+      }
+    }
+    if(temp ==='a'){
+      grid[1][lastNote].pressed = false;
+    }
+    if(temp ==='s'){
+      grid[0][lastNote].pressed = false;
+    }
+    if(temp ==='d'){
+      grid[3][lastNote].pressed = false;
+    }
+    if(temp ==='f'){
+      grid[2][lastNote].pressed = false;
+    }
+  }
+}
+
 
 function spawn() {
   if (random(1) < parameters.spawnRate) {
@@ -99,19 +125,17 @@ function spawn() {
 
 function checkIfCorrect() {
   if (grid[0][parameters.alicePosition].correctPress == false && grid[0][parameters.alicePosition].nota == true) {
-    console.log("MISS PRESS");
-    // alice.states.push('HV');
-    return false;
+    for (var i = 0; i < rows; i++) {
+      grid[i][parameters.alicePosition].miss = true;
+    }
   }
-  if (grid[0][parameters.alicePosition].correctPress == true && grid[0][parameters.alicePosition].nota == true) {
-    console.log("BRAVO");
-    // alice.states.push('AD');
-    return true;
-  }
+  //if (grid[0][parameters.alicePosition].correctPress == true && grid[0][parameters.alicePosition].nota == true) {
+  //}
 }
 
 function moveGrid() {
   checkIfCorrect();
+  reciveInfo();
   for (var j = cols - 1; j > 1; j--) {
     for (var i = 0; i < rows; i++) {
       if (j == cols - 1) {
@@ -123,6 +147,10 @@ function moveGrid() {
           grid[i][j - 1].nota = false;
           grid[i][j].correctPress = grid[i][j - 1].correctPress;
           grid[i][j - 1].correctPress = false;
+          grid[i][j].pressed = grid[i][j - 1].pressed;
+          grid[i][j - 1].pressed = false;
+          grid[i][j].miss = grid[i][j - 1].miss;
+          grid[i][j - 1].miss = false;
         }
       }
     }
