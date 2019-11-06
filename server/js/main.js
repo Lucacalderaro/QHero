@@ -41,6 +41,7 @@ $(document).ready(function () {
       var audio = new Audio('sng/song.mp3')
       audio.play();
       parameters.start = true;
+      setScore();
     }, 5 * 500);
     setTimeout(function () {
       unhide(5);
@@ -115,4 +116,10 @@ function hide(_x) {
 
 function unhide(_x) {
   $(".msg-" + _x).removeClass("invisible");
+}
+
+function setScore() {
+  var score = Math.round(100 * (points.hitA / (points.hitA + points.missA) + points.hitB / (points.hitB + points.missB)));
+  $(".progress-bar").attr("aria-valuenow", score);
+  $(".progress-bar").attr("style", "width: " + score + "%");
 }
