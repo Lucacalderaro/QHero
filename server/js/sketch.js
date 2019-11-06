@@ -123,16 +123,16 @@ function reciveInfo(){
         lastNote = i;
       }
     }
-    if(temp ==='A'){
+    if(temp ==='H'){
       grid[1][lastNote].pressed = false;
     }
-    if(temp ==='S'){
+    if(temp ==='V'){
       grid[0][lastNote].pressed = false;
     }
     if(temp ==='D'){
       grid[3][lastNote].pressed = false;
     }
-    if(temp ==='F'){
+    if(temp ==='A'){
       grid[2][lastNote].pressed = false;
     }
   }
