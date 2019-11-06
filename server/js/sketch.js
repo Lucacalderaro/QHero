@@ -22,8 +22,10 @@ function setup() {
 }
 
 function draw() {
-  rendering();
-  physical();
+  if(parameters.start){
+    rendering();
+    physical();
+  }
 }
 
 
