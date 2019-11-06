@@ -41,3 +41,36 @@ function spamAlice() {
     }, 500);
   }
 }
+
+function pointA(_vector) {
+  if (points.lastMeasure % 2 == 1) {
+    switch ("" + _vector[points.lastMeasure - 1] + _vector[points.lastMeasure]) {
+      case "00": points.n00++; break;
+      case "01": points.n01++; break;
+      case "10": points.n10++; break;
+      case "11": points.n11++; break;
+    }
+  }
+  _vector[points.lastMeasure] ? points.n1++ : points.n0++;
+  points.lastMeasure++;
+  return Math.round(points.scale * (points.alpha * entropyB(points.n0 / (points.n0 + points.n1))
+    + points.beta * 0.5 * entropyBB(
+      points.n00 / (points.n00 + points.n01 + points.n10 + points.n11),
+      points.n01 / (points.n00 + points.n01 + points.n10 + points.n11),
+      points.n10 / (points.n00 + points.n01 + points.n10 + points.n11),
+      points.n11 / (points.n00 + points.n01 + points.n10 + points.n11)
+    )));
+}
+
+
+function pointTotal() {
+  return pointA();
+}
+
+function entropyB(_p) {
+  return - _p * Math.log2(_p) - (1 - _p) * Math.log2(1 - _p);
+}
+
+function entropyBB(_p00, _p01, _p10, _p11) {
+  return - _p00 * Math.log2(_p00) - _p01 * Math.log2(_p01) - _p10 * Math.log2(_p10) - _p11 * Math.log2(_p11);
+}
